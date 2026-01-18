@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Meta tags para configuração da página -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Caça-Palavras</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+    <!-- Ícones Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Contêiner principal -->
+    <div class="container">
+      <!-- Cabeçalho com título -->
+      <header>
+        <h1><i class="fas fa-puzzle-piece"></i> Gerador de Caça-Palavras</h1>
+        <p>Crie seu próprio caça-palavras personalizado</p>
+      </header>
+
+      <!-- Seção de conteúdo com entrada e saída -->
+      <div class="content">
+        <!-- Seção de entrada: formulário para configurar o caça-palavras -->
+        <div class="input-section">
+          <!-- Grupo de formulário: input de palavras -->
+          <div class="form-group">
+            <label for="wordInput">Digite as palavras (uma por linha):</label>
+            <textarea
+              id="wordInput"
+              rows="10"
+              placeholder="Digite as palavras aqui...&#10;Exemplo:&#10;PORTUGUÊS&#10;INGLÊS&#10;APLICAÇÃO"
+            ></textarea>
+          </div>
+
+          <!-- Grupo de formulário: tamanho da grade -->
+          <div class="form-group">
+            <label>Tamanho da grade:</label>
+            <div class="size-controls">
+              <!-- Input para largura -->
+              <label>
+                <span>Largura:</span>
+                <input
+                  type="number"
+                  id="gridWidth"
+                  value="15"
+                  min="10"
+                  max="30"
+                />
+              </label>
+              <!-- Input para altura -->
+              <label>
+                <span>Altura:</span>
+                <input
+                  type="number"
+                  id="gridHeight"
+                  value="15"
+                  min="10"
+                  max="30"
+                />
+              </label>
+            </div>
+          </div>
+
+          <!-- Grupo de formulário: orientações permitidas -->
+          <div class="form-group">
+            <label>Orientações permitidas:</label>
+            <div class="checkbox-group">
+              <!-- Checkbox horizontal -->
+              <label>
+                <input type="checkbox" id="horizontal" checked />
+                <span>Horizontal</span>
+              </label>
+              <!-- Checkbox vertical -->
+              <label>
+                <input type="checkbox" id="vertical" checked />
+                <span>Vertical</span>
+              </label>
+              <!-- Checkbox diagonal -->
+              <label>
+                <input type="checkbox" id="diagonal" checked />
+                <span>Diagonal</span>
+              </label>
+              <!-- Checkbox reverso -->
+              <label>
+                <input type="checkbox" id="reverse" checked />
+                <span>Reverso</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Checkbox para mostrar gabarito por padrão -->
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="showAnswerDefault" />
+              <span>Mostrar gabarito por padrão</span>
+            </label>
+          </div>
+
+          <!-- Botões de ação: Gerar e Limpar -->
+          <div class="button-group">
+            <button id="generateBtn" class="btn btn-primary">
+              <i class="fas fa-wand-magic-sparkles"></i> Gerar
+            </button>
+            <button id="clearBtn" class="btn btn-secondary">
+              <i class="fas fa-trash"></i> Limpar
+            </button>
+          </div>
+        </div>
+
+        <!-- Seção de saída: exibe o caça-palavras gerado -->
+        <div class="output-section">
+          <!-- Título do caça-palavras (mostrado na impressão) -->
+          <div id="printTitle" style="display: none">
+            <h2 id="puzzleTitle"></h2>
+          </div>
+
+          <!-- Container do puzzle: exibe a grade do caça-palavras -->
+          <div id="puzzleContainer">
+            <div class="placeholder">
+              <i class="fas fa-cog"></i>
+              <p>Configure as opções e clique em "Gerar Caça-Palavras"</p>
+            </div>
+          </div>
+
+          <!-- Lista de palavras para encontrar -->
+          <div id="wordListContainer" style="display: none">
+            <h3>Palavras para encontrar:</h3>
+            <ul id="wordList"></ul>
+          </div>
+
+          <!-- Botões de ação: Gabarito, Exportar, Imprimir -->
+          <div id="actionButtons" style="display: none">
+            <button id="showAnswerBtn" class="btn btn-accent">
+              <i class="fas fa-key"></i> Gabarito
+            </button>
+            <button id="exportImageBtn" class="btn btn-accent">
+              <i class="fas fa-image"></i> Exportar
+            </button>
+            <button id="printBtn" class="btn btn-accent">
+              <i class="fas fa-print"></i> Imprimir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para inserir título da impressão -->
+    <div id="titleModal" class="modal-overlay">
+      <div class="modal">
+        <h3>Digite o título do caça-palavras:</h3>
+        <input
+          type="text"
+          id="titleInput"
+          class="modal-input"
+          placeholder="Ex: Caça-Palavras"
+          value="Caça-Palavras"
+        />
+        <!-- Botões do modal: confirmar ou cancelar -->
+        <div class="modal-buttons">
+          <button id="titleConfirmBtn" class="modal-btn modal-btn-confirm">
+            <i class="fas fa-print"></i> Imprimir
+          </button>
+          <button id="titleCancelBtn" class="modal-btn modal-btn-cancel">
+            <i class="fas fa-times"></i> Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts externos e personalizados -->
+    <!-- HTML2Canvas para exportar como imagem -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Scripts modularizados -->
+    <script src="js/classes/Toast.js"></script>
+    <script src="js/classes/WordSearchGenerator.js"></script>
+    <script src="js/ui/WordSearchUI.js"></script>
+    <!-- Script principal -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

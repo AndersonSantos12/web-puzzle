@@ -1,0 +1,912 @@
+/* ========================================
+   RESET E ESTILOS GLOBAIS
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos da página principal */
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: #014c46;
+  min-height: 100vh;
+  padding: 20px;
+  color: #1f2937;
+}
+
+/* ========================================
+   LAYOUT PRINCIPAL
+   ======================================== */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   HEADER (CABEÇALHO)
+   ======================================== */
+
+header {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  margin-bottom: 40px;
+}
+
+/* Título principal com ícone */
+header h1 {
+  font-size: 2.8em;
+  margin-bottom: 10px;
+  text-shadow: none;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Ícone do título */
+header h1 i {
+  margin-right: 12px;
+  color: #60a5fa;
+}
+
+/* Subtítulo */
+header p {
+  font-size: 1.1em;
+  opacity: 0.85;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+/* ========================================
+   LAYOUT DO CONTEÚDO (2 COLUNAS)
+   ======================================== */
+
+.content {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* Seção de entrada (formulário) e saída (resultado) */
+.input-section,
+.output-section {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   ELEMENTOS DO FORMULÁRIO
+   ======================================== */
+
+/* Grupo de formulário (margem entre grupos) */
+.form-group {
+  margin-bottom: 25px;
+}
+
+/* Labels dos formulários */
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Textarea para inserir palavras */
+#wordInput {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Courier New", monospace;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+/* Efeito ao focar no textarea */
+#wordInput:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* ========================================
+   CONTROLES DE TAMANHO (LARGURA/ALTURA)
+   ======================================== */
+
+/* Container dos inputs de tamanho */
+.size-controls {
+  display: flex;
+  gap: 15px;
+}
+
+/* Label dos inputs de tamanho */
+.size-controls label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Inputs de número para largura/altura */
+.size-controls input {
+  width: 80px;
+  padding: 8px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* ========================================
+   CHECKBOXES (ORIENTAÇÕES E GABARITO)
+   ======================================== */
+
+/* Container dos checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Labels dos checkboxes */
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+/* Inputs de checkbox */
+.checkbox-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Label global do formulário */
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Label de checkbox individual (gabarito por padrão) */
+.form-group > label {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* Checkbox individual */
+.form-group > label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* ========================================
+   BOTÕES
+   ======================================== */
+
+/* Container dos botões */
+.button-group,
+#actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Estilos gerais dos botões */
+.btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Ícone dos botões */
+.btn i {
+  font-size: 15px;
+}
+
+/* Botão primário (Gerar) - Azul */
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Efeito hover do botão primário */
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+/* Botão secundário (Limpar) - Cinza */
+.btn-secondary {
+  background: #e5e7eb;
+  color: #374151;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Efeito hover do botão secundário */
+.btn-secondary:hover {
+  background: #d1d5db;
+  transform: translateY(-2px);
+}
+
+/* Botão destaque (Gabarito, Exportar, Imprimir) - Verde */
+.btn-accent {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Efeito hover do botão destaque */
+.btn-accent:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* ========================================
+   SEÇÃO DE SAÍDA (RESULTADO)
+   ======================================== */
+
+/* Container de saída */
+.output-section {
+  min-height: 400px;
+}
+
+/* Placeholder inicial (antes de gerar) */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #9ca3af;
+  font-size: 1.05em;
+  text-align: center;
+}
+
+/* Ícone do placeholder */
+.placeholder i {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  color: #6b7280;
+  opacity: 0.6;
+}
+
+/* ========================================
+   PUZZLE (GRADE DO CAÇA-PALAVRAS)
+   ======================================== */
+
+/* Container do puzzle */
+#puzzleContainer {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+/* Grid do puzzle */
+.puzzle-grid {
+  display: inline-grid;
+  gap: 2px;
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Célula individual do puzzle */
+.puzzle-cell {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2px solid #e5e7eb;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+/* Efeito hover nas células */
+.puzzle-cell:hover {
+  background: #f3f4f6;
+  border-color: #3b82f6;
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* Célula encontrada (ao procurar) */
+.puzzle-cell.found {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Célula do gabarito (visível ao clicar "Mostrar Gabarito") */
+.puzzle-cell.answer {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   LISTA DE PALAVRAS
+   ======================================== */
+
+/* Container da lista de palavras */
+#wordListContainer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #e5e7eb;
+}
+
+/* Título da lista */
+#wordListContainer h3 {
+  color: #1f2937;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+/* Grid da lista de palavras */
+#wordList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+/* Item individual da lista */
+#wordList li {
+  padding: 10px 12px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+/* Efeito hover nos items da lista */
+#wordList li:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+/* Item encontrado (riscado e destacado) */
+#wordList li.found {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #3b82f6;
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+/* ========================================
+   TÍTULO PARA IMPRESSÃO
+   ======================================== */
+
+/* Container do título */
+#printTitle {
+  margin-bottom: 20px;
+}
+
+/* Título do puzzle */
+#puzzleTitle {
+  color: #333;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ========================================
+   NOTIFICAÇÕES (TOAST)
+   ======================================== */
+
+/* Estilos gerais da notificação */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #333;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Toast sucesso (verde) */
+.toast.success {
+  background: #4caf50;
+}
+
+/* Toast erro (vermelho) */
+.toast.error {
+  background: #f44336;
+}
+
+/* Toast aviso (laranja) */
+.toast.warning {
+  background: #ff9800;
+}
+
+/* Animação de entrada do toast */
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animação de saída do toast */
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+/* Toast sendo removido */
+.toast.hide {
+  animation: slideOut 0.3s ease-out;
+}
+
+/* ========================================
+   MODAL (DIÁLOGO DE TÍTULO)
+   ======================================== */
+
+/* Overlay escuro do modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* Modal visível */
+.modal-overlay.active {
+  display: flex;
+}
+
+/* Caixa do modal */
+.modal {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Título do modal */
+.modal h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input de texto do modal */
+.modal-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* Efeito ao focar no input do modal */
+.modal-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Container dos botões do modal */
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Botões do modal */
+.modal-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* Botão confirmar (azul) */
+.modal-btn-confirm {
+  background: #667eea;
+  color: white;
+}
+
+/* Efeito hover do botão confirmar */
+.modal-btn-confirm:hover {
+  background: #764ba2;
+}
+
+/* Botão cancelar (cinza) */
+.modal-btn-cancel {
+  background: #e0e0e0;
+  color: #333;
+}
+
+/* Efeito hover do botão cancelar */
+.modal-btn-cancel:hover {
+  background: #d0d0d0;
+}
+
+/* ========================================
+   PRINT (IMPRESSÃO)
+   ======================================== */
+
+/* Oculta modal na impressão */
+@media print {
+  .modal-overlay {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   RESPONSIVIDADE - TABLET
+   ======================================== */
+
+/* Layout em tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   RESPONSIVIDADE - MOBILE GRANDE (≤768px)
+   ======================================== */
+
+/* Mobile grande (≤768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  /* Container responsivo */
+  .container {
+    max-width: 100%;
+  }
+
+  /* Header responsivo */
+  header h1 {
+    font-size: 2em;
+    margin-bottom: 8px;
+  }
+
+  header p {
+    font-size: 0.95em;
+  }
+
+  /* Conteúdo em coluna única */
+  .content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Seções com padding reduzido */
+  .input-section,
+  .output-section {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  /* Formulário responsivo */
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    font-size: 0.95em;
+    margin-bottom: 8px;
+  }
+
+  /* Textarea responsivo */
+  #wordInput {
+    padding: 10px;
+    font-size: 13px;
+    rows: 8;
+  }
+
+  /* Controles de tamanho empilhados */
+  .size-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .size-controls label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .size-controls input {
+    width: 100%;
+  }
+
+  /* Checkboxes menores */
+  .checkbox-group {
+    gap: 8px;
+  }
+
+  .checkbox-group input[type="checkbox"],
+  .form-group > label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Botões menores e empilhados */
+  .btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .btn i {
+    font-size: 14px;
+  }
+
+  .button-group,
+  #actionButtons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .button-group .btn,
+  #actionButtons .btn {
+    width: 100%;
+  }
+
+  /* Puzzle compacto */
+  .puzzle-grid {
+    padding: 12px;
+    gap: 1px;
+  }
+
+  .puzzle-cell {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    border: 1px solid #e5e7eb;
+  }
+
+  /* Lista de palavras em grid responsivo */
+  #wordList {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+
+  #wordList li {
+    padding: 8px 10px;
+    font-size: 0.9em;
+  }
+
+  #wordListContainer h3 {
+    font-size: 1em;
+    margin-bottom: 12px;
+  }
+
+  /* Modal responsivo */
+  .modal {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .modal h3 {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+  }
+
+  .modal-input {
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .modal-btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  #printTitle {
+    margin-bottom: 15px;
+  }
+
+  #puzzleTitle {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 1.6em;
+    margin-bottom: 6px;
+  }
+
+  header p {
+    font-size: 0.9em;
+  }
+
+  .input-section,
+  .output-section {
+    padding: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    font-size: 0.9em;
+  }
+
+  #wordInput {
+    padding: 8px;
+    font-size: 12px;
+    rows: 6;
+  }
+
+  .size-controls input {
+    padding: 6px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .btn i {
+    font-size: 13px;
+  }
+
+  .puzzle-cell {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  #wordList {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  #wordList li {
+    padding: 6px 8px;
+    font-size: 0.85em;
+  }
+
+  .toast {
+    bottom: auto;
+    top: 15px;
+    right: 15px;
+    left: 15px;
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+
+  .modal {
+    width: 90%;
+    padding: 18px;
+  }
+
+  .modal h3 {
+    font-size: 1em;
+  }
+
+  .modal-input {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  #puzzleTitle {
+    font-size: 1.2em;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  header {
+    display: none;
+  }
+
+  .input-section {
+    display: none;
+  }
+
+  #actionButtons {
+    display: none !important;
+  }
+
+  .output-section {
+    box-shadow: none;
+    padding: 20px;
+  }
+
+  #printTitle {
+    display: block !important;
+  }
+
+  #puzzleTitle {
+    color: #333;
+    page-break-after: avoid;
+  }
+
+  #puzzleContainer {
+    page-break-inside: avoid;
+    margin-bottom: 30px;
+  }
+
+  .puzzle-cell {
+    border: 1px solid #333;
+  }
+}
